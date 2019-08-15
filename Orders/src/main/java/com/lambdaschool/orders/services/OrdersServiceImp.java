@@ -1,5 +1,10 @@
 package com.lambdaschool.orders.services;
 
-public class OrdersServiceImp
+import com.lambdaschool.orders.repo.OrdersRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+
+public class OrdersServiceImp implements OrdersService
 {
+    @Autowired
+    private OrdersRepository ordersrepos;
 }
