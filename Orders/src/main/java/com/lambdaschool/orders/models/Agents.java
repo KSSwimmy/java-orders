@@ -1,4 +1,4 @@
-package com.lambdaschool.orders.model;
+package com.lambdaschool.orders.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -8,30 +8,26 @@ import java.util.List;
 
 @Entity
 @Table(name = "agent")
-
 public class Agents
 {
-    @Id
+   @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long agentcode;
 
+   @Column(unique =true,
+           nullable = false)
     private String agentname;
     private String workingarea;
-    private double commission;
+    private Double commission;
     private String phone;
     private String country;
 
-    @OneToMany(mappedBy = "agent",
-               cascade = CascadeType.ALL,
-               orphanRemoval = true)
-    @JsonIgnoreProperties("agent")
-    private List<Customers> customers = new ArrayList<>();
-
     public Agents()
     {
+
     }
 
-    public Agents(String agentname, String workingarea, double commission, String phone, String country)
+    public Agents(String agentname, String workingarea, Double commission, String phone, String country)
     {
         this.agentname = agentname;
         this.workingarea = workingarea;
@@ -70,12 +66,12 @@ public class Agents
         this.workingarea = workingarea;
     }
 
-    public double getCommission()
+    public Double getCommission()
     {
         return commission;
     }
 
-    public void setCommission(double commission)
+    public void setCommission(Double commission)
     {
         this.commission = commission;
     }
@@ -98,15 +94,5 @@ public class Agents
     public void setCountry(String country)
     {
         this.country = country;
-    }
-
-    public List<Customers> getCustomers()
-    {
-        return customers;
-    }
-
-    public void setCustomers(List<Customers> customers)
-    {
-        this.customers = customers;
     }
 }
